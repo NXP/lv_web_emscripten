@@ -18,7 +18,10 @@
 #include "lv_drivers/indev/mousewheel.h"
 #include "lv_drivers/indev/keyboard.h"
 
-#include "examplelist.h"
+#include "gui_guider.h"
+#include "custom.h"
+#include "widgets_init.h"
+
 
 /*********************
  *      DEFINES
@@ -49,6 +52,8 @@ static lv_disp_t  * disp1;
 
 int monitor_hor_res, monitor_ver_res;
 
+lv_ui guider_ui;
+
 /**********************
  *      MACROS
  **********************/
@@ -58,42 +63,19 @@ int monitor_hor_res, monitor_ver_res;
  **********************/
 void do_loop(void *arg);
 
-/* Allows disabling CHOSEN_DEMO */
-static void lv_example_noop(void) {
-}
-
 int main(int argc, char ** argv)
 {
-    extern const struct lv_ci_example lv_ci_example_list[];
-    const struct lv_ci_example *ex = NULL;
-    monitor_hor_res = atoi(argv[1]);
-    monitor_ver_res = atoi(argv[2]);
-    /* Check if a specific example is wanted (not "default") */
-    if(argc >= 4 && strcmp(ex->name, "default")) {
-        for(ex = &lv_ci_example_list[0]; ex->name != NULL; ex++) {
-            if(!strcmp(ex->name, argv[3])) {
-                break;
-            }
-        }
-        if(ex->name == NULL) {
-            fprintf(stderr, "Unable to find requested example\n");
-        }
-    }
-    printf("Starting with screen resolution of %dx%d px\n", monitor_hor_res, monitor_ver_res);
-
+    monitor_hor_res = LV_HOR_RES_MAX;
+    monitor_ver_res = LV_VER_RES_MAX;
     /*Initialize LittlevGL*/
     lv_init();
 
     /*Initialize the HAL (display, input devices, tick) for LittlevGL*/
     hal_init();
 
-    /*Load a demo*/
-    if(ex != NULL && ex->fn != NULL) {
-        ex->fn();
-    } else {
-        extern void CHOSEN_DEMO(void);
-        CHOSEN_DEMO();
-    }
+    /*Initialize the init screen ui for GUI Guider application*/
+    setup_ui(&guider_ui);
+    custom_init(&guider_ui);
 
     emscripten_set_main_loop_arg(do_loop, NULL, -1, true);
 }

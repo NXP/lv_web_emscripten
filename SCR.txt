@@ -1,0 +1,12 @@
+Repository:                 lv_web_emscripten.git
+
+Version:                    1.0.0
+Outgoing License:           MIT license
+License File:               LICENSE
+Description and comments:   Dockerfile for convert GUI Guider application to html.
+Release Location:           https://github.com/nxp/lv_web_emscripten
+Origin:                     NXP (MIT license)
+                            lv_drivers release/v8.3 (MIT license) https://github.com/lvgl/lv_drivers/tree/d85c7303eca835ea418d7e035f00dfe07c391d3f
+                            lvgl release/nxp-v8.3.10 (MIT license) https://github.com/nxp-mcuxpresso/lvgl
+                            lv_web_emscripten release/v8.3 (MIT license) https://github.com/lvgl/lv_web_emscripten/tree/release/v8.3
+
