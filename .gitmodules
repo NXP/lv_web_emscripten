@@ -1,7 +1,7 @@
 [submodule "lvgl"]
 	path = lvgl
-	url = https://github.com/littlevgl/lvgl.git
-	branch = master
+	url = https://github.com/nxp-mcuxpresso/lvgl.git
+	branch = release/nxp-v8.3.10-gg
 [submodule "lv_drivers"]
 	path = lv_drivers
 	url = https://github.com/littlevgl/lv_drivers.git
